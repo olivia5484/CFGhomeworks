@@ -6,7 +6,7 @@ class Student:
         self.id = id
         self.subjects = dict()
 
-# add a new subject and it's grade
+# add a new subject and its grade
     def add_subject(self, subject_and_grade):
         self.subjects.update(subject_and_grade)
 
@@ -16,7 +16,7 @@ class Student:
 
 # view all subjects
     def view_subjects(self):
-        # print(f"The subjects taken by {self.name} are: {self.subjects}")
+        print(f"The subjects taken by {self.name} are:")
         for key, value in self.subjects.items():
             print(key, ':', value)
 
@@ -29,12 +29,7 @@ class Student:
 
 # has the student passed the course?
     def pass_or_fail(self):
-        def average_grade():
-            total_grade = int(sum(self.subjects.values()))
-            number_of_subjects = int(len(self.subjects.keys()))
-            average = total_grade / number_of_subjects
-            return average
-        if average_grade() > 70:
+        if self.average_grade() > 70:
             print("This student has passed the course.\n")
         else:
             print("This student has not passed the course. \n")
@@ -42,15 +37,15 @@ class Student:
 
 class CFGStudent(Student):
 
-    def __init__(self, name, age, id):
+    def __init__(self, name, age, id, specialisation):
         super().__init__(name, age, id)
+        self.specialisation = specialisation
 
 
 # add a student called Jane - this is NOT a CFG student
 jane = Student("Jane", 18, 1)
 
 # add subjects for Jane
-print(f"Jane's Subjects:")
 jane.add_subject({'English': 70})
 jane.add_subject({'Maths': 90})
 jane.add_subject({'History': 85})
@@ -71,10 +66,9 @@ jane.pass_or_fail()
 # class CFGStudent(<should inherit from Student>)
 
 # add a new CFG student called Olivia - on the software stream
-olivia = CFGStudent("Olivia", 28, 2)
+olivia = CFGStudent("Olivia", 28, 2, "Software")
 
 # add subjects for CFG student Olivia
-print("Olivia's Subjects:")
 olivia.add_subject({"SQL": 99})
 olivia.add_subject({"Python": 90})
 olivia.add_subject({"HTML": 84})
@@ -97,10 +91,9 @@ olivia.pass_or_fail()
 # class CFGStudent(<should inherit from Student>)
 
 # add another CFG student called Cassandra - she is on the data stream
-cassandra = CFGStudent("Cassandra", 28, 3)
+cassandra = CFGStudent("Cassandra", 28, 3, "Data")
 
 # add subjects for CFG student Olivia
-print("Cassandra's Subjects:")
 cassandra.add_subject({"SQL": 60})
 cassandra.add_subject({"Python": 40})
 cassandra.add_subject({"HTML": 50})
